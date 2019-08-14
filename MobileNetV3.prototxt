@@ -484,29 +484,26 @@ layer {
   }
 }
 layer {
-  name: "mean1"
-  type: "Reduction"
+  name: "ave_pool1"
+  type: "Pooling"
   bottom: "conv11"
-  top: "mean1"
-  reduction_param {
-    operation: MEAN
-    axis: 3
+  top: "ave_pool1"
+  pooling_param {
+    pool: AVE
+    kernel_size: 28
+    stride: 28
   }
 }
 layer {
-  name: "mean2"
-  type: "Reduction"
-  bottom: "mean1"
-  top: "mean2"
-  reduction_param {
-    operation: MEAN
-    axis: 2
-  }
+  name: "route1"
+  type: "Concat"
+  bottom: "ave_pool1"
+  top: "route1"
 }
 layer {
   name: "fc1"
   type: "InnerProduct"
-  bottom: "mean2"
+  bottom: "route1"
   top: "fc1"
   inner_product_param {
     num_output: 18
@@ -548,33 +545,22 @@ layer {
   top: "relu9"
 }
 layer {
-  name: "view1"
-  type: "Reshape"
+  name: "route2"
+  type: "Concat"
   bottom: "relu9"
-  top: "view1"
-  reshape_param {
-    shape {
-      dim: 0
-      dim: 72
-      dim: 1
-      dim: 1
-    }
-  }
+  top: "route2"
 }
 layer {
-  name: "mul2"
-  type: "Eltwise"
+  name: "scale1"
+  type: "Scale"
   bottom: "conv11"
-  bottom: "view1"
-  top: "mul2"
-  eltwise_param {
-    operation: PROD
-  }
+  bottom: "route2"
+  top: "scale1"
 }
 layer {
   name: "relu10"
   type: "ReLU"
-  bottom: "mul2"
+  bottom: "scale1"
   top: "relu10"
 }
 layer {
@@ -695,29 +681,26 @@ layer {
   }
 }
 layer {
-  name: "mean3"
-  type: "Reduction"
+  name: "ave_pool2"
+  type: "Pooling"
   bottom: "conv14"
-  top: "mean3"
-  reduction_param {
-    operation: MEAN
-    axis: 3
+  top: "ave_pool2"
+  pooling_param {
+    pool: AVE
+    kernel_size: 28
+    stride: 28
   }
 }
 layer {
-  name: "mean4"
-  type: "Reduction"
-  bottom: "mean3"
-  top: "mean4"
-  reduction_param {
-    operation: MEAN
-    axis: 2
-  }
+  name: "route3"
+  type: "Concat"
+  bottom: "ave_pool2"
+  top: "route3"
 }
 layer {
   name: "fc3"
   type: "InnerProduct"
-  bottom: "mean4"
+  bottom: "route3"
   top: "fc3"
   inner_product_param {
     num_output: 30
@@ -759,33 +742,22 @@ layer {
   top: "relu13"
 }
 layer {
-  name: "view2"
-  type: "Reshape"
+  name: "route4"
+  type: "Concat"
   bottom: "relu13"
-  top: "view2"
-  reshape_param {
-    shape {
-      dim: 0
-      dim: 120
-      dim: 1
-      dim: 1
-    }
-  }
+  top: "route4"
 }
 layer {
-  name: "mul3"
-  type: "Eltwise"
+  name: "scale2"
+  type: "Scale"
   bottom: "conv14"
-  bottom: "view2"
-  top: "mul3"
-  eltwise_param {
-    operation: PROD
-  }
+  bottom: "route4"
+  top: "scale2"
 }
 layer {
   name: "relu14"
   type: "ReLU"
-  bottom: "mul3"
+  bottom: "scale2"
   top: "relu14"
 }
 layer {
@@ -916,29 +888,26 @@ layer {
   }
 }
 layer {
-  name: "mean5"
-  type: "Reduction"
+  name: "ave_pool3"
+  type: "Pooling"
   bottom: "conv17"
-  top: "mean5"
-  reduction_param {
-    operation: MEAN
-    axis: 3
+  top: "ave_pool3"
+  pooling_param {
+    pool: AVE
+    kernel_size: 28
+    stride: 28
   }
 }
 layer {
-  name: "mean6"
-  type: "Reduction"
-  bottom: "mean5"
-  top: "mean6"
-  reduction_param {
-    operation: MEAN
-    axis: 2
-  }
+  name: "route5"
+  type: "Concat"
+  bottom: "ave_pool3"
+  top: "route5"
 }
 layer {
   name: "fc5"
   type: "InnerProduct"
-  bottom: "mean6"
+  bottom: "route5"
   top: "fc5"
   inner_product_param {
     num_output: 30
@@ -980,33 +949,22 @@ layer {
   top: "relu17"
 }
 layer {
-  name: "view3"
-  type: "Reshape"
+  name: "route6"
+  type: "Concat"
   bottom: "relu17"
-  top: "view3"
-  reshape_param {
-    shape {
-      dim: 0
-      dim: 120
-      dim: 1
-      dim: 1
-    }
-  }
+  top: "route6"
 }
 layer {
-  name: "mul4"
-  type: "Eltwise"
+  name: "scale3"
+  type: "Scale"
   bottom: "conv17"
-  bottom: "view3"
-  top: "mul4"
-  eltwise_param {
-    operation: PROD
-  }
+  bottom: "route6"
+  top: "scale3"
 }
 layer {
   name: "relu18"
   type: "ReLU"
-  bottom: "mul4"
+  bottom: "scale3"
   top: "relu18"
 }
 layer {
@@ -1100,11 +1058,11 @@ layer {
   top: "relu19"
 }
 layer {
-  name: "mul5"
+  name: "mul2"
   type: "Eltwise"
   bottom: "conv19"
   bottom: "relu19"
-  top: "mul5"
+  top: "mul2"
   eltwise_param {
     operation: PROD
   }
@@ -1112,7 +1070,7 @@ layer {
 layer {
   name: "conv20"
   type: "Convolution"
-  bottom: "mul5"
+  bottom: "mul2"
   top: "conv20"
   convolution_param {
     num_output: 240
@@ -1153,11 +1111,11 @@ layer {
   top: "relu20"
 }
 layer {
-  name: "mul6"
+  name: "mul3"
   type: "Eltwise"
   bottom: "conv20"
   bottom: "relu20"
-  top: "mul6"
+  top: "mul3"
   eltwise_param {
     operation: PROD
   }
@@ -1165,7 +1123,7 @@ layer {
 layer {
   name: "conv21"
   type: "Convolution"
-  bottom: "mul6"
+  bottom: "mul3"
   top: "conv21"
   convolution_param {
     num_output: 80
@@ -1243,11 +1201,11 @@ layer {
   top: "relu21"
 }
 layer {
-  name: "mul7"
+  name: "mul4"
   type: "Eltwise"
   bottom: "conv22"
   bottom: "relu21"
-  top: "mul7"
+  top: "mul4"
   eltwise_param {
     operation: PROD
   }
@@ -1255,7 +1213,7 @@ layer {
 layer {
   name: "conv23"
   type: "Convolution"
-  bottom: "mul7"
+  bottom: "mul4"
   top: "conv23"
   convolution_param {
     num_output: 200
@@ -1296,11 +1254,11 @@ layer {
   top: "relu22"
 }
 layer {
-  name: "mul8"
+  name: "mul5"
   type: "Eltwise"
   bottom: "conv23"
   bottom: "relu22"
-  top: "mul8"
+  top: "mul5"
   eltwise_param {
     operation: PROD
   }
@@ -1308,7 +1266,7 @@ layer {
 layer {
   name: "conv24"
   type: "Convolution"
-  bottom: "mul8"
+  bottom: "mul5"
   top: "conv24"
   convolution_param {
     num_output: 80
@@ -1396,11 +1354,11 @@ layer {
   top: "relu23"
 }
 layer {
-  name: "mul9"
+  name: "mul6"
   type: "Eltwise"
   bottom: "conv25"
   bottom: "relu23"
-  top: "mul9"
+  top: "mul6"
   eltwise_param {
     operation: PROD
   }
@@ -1408,7 +1366,7 @@ layer {
 layer {
   name: "conv26"
   type: "Convolution"
-  bottom: "mul9"
+  bottom: "mul6"
   top: "conv26"
   convolution_param {
     num_output: 184
@@ -1449,11 +1407,11 @@ layer {
   top: "relu24"
 }
 layer {
-  name: "mul10"
+  name: "mul7"
   type: "Eltwise"
   bottom: "conv26"
   bottom: "relu24"
-  top: "mul10"
+  top: "mul7"
   eltwise_param {
     operation: PROD
   }
@@ -1461,7 +1419,7 @@ layer {
 layer {
   name: "conv27"
   type: "Convolution"
-  bottom: "mul10"
+  bottom: "mul7"
   top: "conv27"
   convolution_param {
     num_output: 80
@@ -1549,11 +1507,11 @@ layer {
   top: "relu25"
 }
 layer {
-  name: "mul11"
+  name: "mul8"
   type: "Eltwise"
   bottom: "conv28"
   bottom: "relu25"
-  top: "mul11"
+  top: "mul8"
   eltwise_param {
     operation: PROD
   }
@@ -1561,7 +1519,7 @@ layer {
 layer {
   name: "conv29"
   type: "Convolution"
-  bottom: "mul11"
+  bottom: "mul8"
   top: "conv29"
   convolution_param {
     num_output: 184
@@ -1602,11 +1560,11 @@ layer {
   top: "relu26"
 }
 layer {
-  name: "mul12"
+  name: "mul9"
   type: "Eltwise"
   bottom: "conv29"
   bottom: "relu26"
-  top: "mul12"
+  top: "mul9"
   eltwise_param {
     operation: PROD
   }
@@ -1614,7 +1572,7 @@ layer {
 layer {
   name: "conv30"
   type: "Convolution"
-  bottom: "mul12"
+  bottom: "mul9"
   top: "conv30"
   convolution_param {
     num_output: 80
@@ -1702,11 +1660,11 @@ layer {
   top: "relu27"
 }
 layer {
-  name: "mul13"
+  name: "mul10"
   type: "Eltwise"
   bottom: "conv31"
   bottom: "relu27"
-  top: "mul13"
+  top: "mul10"
   eltwise_param {
     operation: PROD
   }
@@ -1714,7 +1672,7 @@ layer {
 layer {
   name: "conv32"
   type: "Convolution"
-  bottom: "mul13"
+  bottom: "mul10"
   top: "conv32"
   convolution_param {
     num_output: 480
@@ -1749,29 +1707,26 @@ layer {
   }
 }
 layer {
-  name: "mean7"
-  type: "Reduction"
+  name: "ave_pool4"
+  type: "Pooling"
   bottom: "conv32"
-  top: "mean7"
-  reduction_param {
-    operation: MEAN
-    axis: 3
+  top: "ave_pool4"
+  pooling_param {
+    pool: AVE
+    kernel_size: 14
+    stride: 14
   }
 }
 layer {
-  name: "mean8"
-  type: "Reduction"
-  bottom: "mean7"
-  top: "mean8"
-  reduction_param {
-    operation: MEAN
-    axis: 2
-  }
+  name: "route7"
+  type: "Concat"
+  bottom: "ave_pool4"
+  top: "route7"
 }
 layer {
   name: "fc7"
   type: "InnerProduct"
-  bottom: "mean8"
+  bottom: "route7"
   top: "fc7"
   inner_product_param {
     num_output: 120
@@ -1813,41 +1768,30 @@ layer {
   top: "relu29"
 }
 layer {
-  name: "view4"
-  type: "Reshape"
+  name: "route8"
+  type: "Concat"
   bottom: "relu29"
-  top: "view4"
-  reshape_param {
-    shape {
-      dim: 0
-      dim: 480
-      dim: 1
-      dim: 1
-    }
-  }
+  top: "route8"
 }
 layer {
-  name: "mul14"
-  type: "Eltwise"
+  name: "scale4"
+  type: "Scale"
   bottom: "conv32"
-  bottom: "view4"
-  top: "mul14"
-  eltwise_param {
-    operation: PROD
-  }
+  bottom: "route8"
+  top: "scale4"
 }
 layer {
   name: "relu30"
   type: "ReLU"
-  bottom: "mul14"
+  bottom: "scale4"
   top: "relu30"
 }
 layer {
-  name: "mul15"
+  name: "mul11"
   type: "Eltwise"
-  bottom: "mul14"
+  bottom: "scale4"
   bottom: "relu30"
-  top: "mul15"
+  top: "mul11"
   eltwise_param {
     operation: PROD
   }
@@ -1855,7 +1799,7 @@ layer {
 layer {
   name: "conv33"
   type: "Convolution"
-  bottom: "mul15"
+  bottom: "mul11"
   top: "conv33"
   convolution_param {
     num_output: 112
@@ -1933,11 +1877,11 @@ layer {
   top: "relu31"
 }
 layer {
-  name: "mul16"
+  name: "mul12"
   type: "Eltwise"
   bottom: "conv34"
   bottom: "relu31"
-  top: "mul16"
+  top: "mul12"
   eltwise_param {
     operation: PROD
   }
@@ -1945,7 +1889,7 @@ layer {
 layer {
   name: "conv35"
   type: "Convolution"
-  bottom: "mul16"
+  bottom: "mul12"
   top: "conv35"
   convolution_param {
     num_output: 672
@@ -1980,29 +1924,26 @@ layer {
   }
 }
 layer {
-  name: "mean9"
-  type: "Reduction"
+  name: "ave_pool5"
+  type: "Pooling"
   bottom: "conv35"
-  top: "mean9"
-  reduction_param {
-    operation: MEAN
-    axis: 3
+  top: "ave_pool5"
+  pooling_param {
+    pool: AVE
+    kernel_size: 14
+    stride: 14
   }
 }
 layer {
-  name: "mean10"
-  type: "Reduction"
-  bottom: "mean9"
-  top: "mean10"
-  reduction_param {
-    operation: MEAN
-    axis: 2
-  }
+  name: "route9"
+  type: "Concat"
+  bottom: "ave_pool5"
+  top: "route9"
 }
 layer {
   name: "fc9"
   type: "InnerProduct"
-  bottom: "mean10"
+  bottom: "route9"
   top: "fc9"
   inner_product_param {
     num_output: 168
@@ -2044,41 +1985,30 @@ layer {
   top: "relu33"
 }
 layer {
-  name: "view5"
-  type: "Reshape"
+  name: "route10"
+  type: "Concat"
   bottom: "relu33"
-  top: "view5"
-  reshape_param {
-    shape {
-      dim: 0
-      dim: 672
-      dim: 1
-      dim: 1
-    }
-  }
+  top: "route10"
 }
 layer {
-  name: "mul17"
-  type: "Eltwise"
+  name: "scale5"
+  type: "Scale"
   bottom: "conv35"
-  bottom: "view5"
-  top: "mul17"
-  eltwise_param {
-    operation: PROD
-  }
+  bottom: "route10"
+  top: "scale5"
 }
 layer {
   name: "relu34"
   type: "ReLU"
-  bottom: "mul17"
+  bottom: "scale5"
   top: "relu34"
 }
 layer {
-  name: "mul18"
+  name: "mul13"
   type: "Eltwise"
-  bottom: "mul17"
+  bottom: "scale5"
   bottom: "relu34"
-  top: "mul18"
+  top: "mul13"
   eltwise_param {
     operation: PROD
   }
@@ -2086,7 +2016,7 @@ layer {
 layer {
   name: "conv36"
   type: "Convolution"
-  bottom: "mul18"
+  bottom: "mul13"
   top: "conv36"
   convolution_param {
     num_output: 112
@@ -2174,11 +2104,11 @@ layer {
   top: "relu35"
 }
 layer {
-  name: "mul19"
+  name: "mul14"
   type: "Eltwise"
   bottom: "conv37"
   bottom: "relu35"
-  top: "mul19"
+  top: "mul14"
   eltwise_param {
     operation: PROD
   }
@@ -2186,7 +2116,7 @@ layer {
 layer {
   name: "conv38"
   type: "Convolution"
-  bottom: "mul19"
+  bottom: "mul14"
   top: "conv38"
   convolution_param {
     num_output: 672
@@ -2221,29 +2151,26 @@ layer {
   }
 }
 layer {
-  name: "mean11"
-  type: "Reduction"
+  name: "ave_pool6"
+  type: "Pooling"
   bottom: "conv38"
-  top: "mean11"
-  reduction_param {
-    operation: MEAN
-    axis: 3
+  top: "ave_pool6"
+  pooling_param {
+    pool: AVE
+    kernel_size: 14
+    stride: 14
   }
 }
 layer {
-  name: "mean12"
-  type: "Reduction"
-  bottom: "mean11"
-  top: "mean12"
-  reduction_param {
-    operation: MEAN
-    axis: 2
-  }
+  name: "route11"
+  type: "Concat"
+  bottom: "ave_pool6"
+  top: "route11"
 }
 layer {
   name: "fc11"
   type: "InnerProduct"
-  bottom: "mean12"
+  bottom: "route11"
   top: "fc11"
   inner_product_param {
     num_output: 168
@@ -2285,41 +2212,30 @@ layer {
   top: "relu37"
 }
 layer {
-  name: "view6"
-  type: "Reshape"
+  name: "route12"
+  type: "Concat"
   bottom: "relu37"
-  top: "view6"
-  reshape_param {
-    shape {
-      dim: 0
-      dim: 672
-      dim: 1
-      dim: 1
-    }
-  }
+  top: "route12"
 }
 layer {
-  name: "mul20"
-  type: "Eltwise"
+  name: "scale6"
+  type: "Scale"
   bottom: "conv38"
-  bottom: "view6"
-  top: "mul20"
-  eltwise_param {
-    operation: PROD
-  }
+  bottom: "route12"
+  top: "scale6"
 }
 layer {
   name: "relu38"
   type: "ReLU"
-  bottom: "mul20"
+  bottom: "scale6"
   top: "relu38"
 }
 layer {
-  name: "mul21"
+  name: "mul15"
   type: "Eltwise"
-  bottom: "mul20"
+  bottom: "scale6"
   bottom: "relu38"
-  top: "mul21"
+  top: "mul15"
   eltwise_param {
     operation: PROD
   }
@@ -2327,7 +2243,7 @@ layer {
 layer {
   name: "conv39"
   type: "Convolution"
-  bottom: "mul21"
+  bottom: "mul15"
   top: "conv39"
   convolution_param {
     num_output: 160
@@ -2405,11 +2321,11 @@ layer {
   top: "relu39"
 }
 layer {
-  name: "mul22"
+  name: "mul16"
   type: "Eltwise"
   bottom: "conv40"
   bottom: "relu39"
-  top: "mul22"
+  top: "mul16"
   eltwise_param {
     operation: PROD
   }
@@ -2417,7 +2333,7 @@ layer {
 layer {
   name: "conv41"
   type: "Convolution"
-  bottom: "mul22"
+  bottom: "mul16"
   top: "conv41"
   convolution_param {
     num_output: 672
@@ -2452,29 +2368,26 @@ layer {
   }
 }
 layer {
-  name: "mean13"
-  type: "Reduction"
+  name: "ave_pool7"
+  type: "Pooling"
   bottom: "conv41"
-  top: "mean13"
-  reduction_param {
-    operation: MEAN
-    axis: 3
+  top: "ave_pool7"
+  pooling_param {
+    pool: AVE
+    kernel_size: 7
+    stride: 7
   }
 }
 layer {
-  name: "mean14"
-  type: "Reduction"
-  bottom: "mean13"
-  top: "mean14"
-  reduction_param {
-    operation: MEAN
-    axis: 2
-  }
+  name: "route13"
+  type: "Concat"
+  bottom: "ave_pool7"
+  top: "route13"
 }
 layer {
   name: "fc13"
   type: "InnerProduct"
-  bottom: "mean14"
+  bottom: "route13"
   top: "fc13"
   inner_product_param {
     num_output: 168
@@ -2516,41 +2429,30 @@ layer {
   top: "relu41"
 }
 layer {
-  name: "view7"
-  type: "Reshape"
+  name: "route14"
+  type: "Concat"
   bottom: "relu41"
-  top: "view7"
-  reshape_param {
-    shape {
-      dim: 0
-      dim: 672
-      dim: 1
-      dim: 1
-    }
-  }
+  top: "route14"
 }
 layer {
-  name: "mul23"
-  type: "Eltwise"
+  name: "scale7"
+  type: "Scale"
   bottom: "conv41"
-  bottom: "view7"
-  top: "mul23"
-  eltwise_param {
-    operation: PROD
-  }
+  bottom: "route14"
+  top: "scale7"
 }
 layer {
   name: "relu42"
   type: "ReLU"
-  bottom: "mul23"
+  bottom: "scale7"
   top: "relu42"
 }
 layer {
-  name: "mul24"
+  name: "mul17"
   type: "Eltwise"
-  bottom: "mul23"
+  bottom: "scale7"
   bottom: "relu42"
-  top: "mul24"
+  top: "mul17"
   eltwise_param {
     operation: PROD
   }
@@ -2558,7 +2460,7 @@ layer {
 layer {
   name: "conv42"
   type: "Convolution"
-  bottom: "mul24"
+  bottom: "mul17"
   top: "conv42"
   convolution_param {
     num_output: 160
@@ -2636,11 +2538,11 @@ layer {
   top: "relu43"
 }
 layer {
-  name: "mul25"
+  name: "mul18"
   type: "Eltwise"
   bottom: "conv43"
   bottom: "relu43"
-  top: "mul25"
+  top: "mul18"
   eltwise_param {
     operation: PROD
   }
@@ -2648,7 +2550,7 @@ layer {
 layer {
   name: "conv44"
   type: "Convolution"
-  bottom: "mul25"
+  bottom: "mul18"
   top: "conv44"
   convolution_param {
     num_output: 960
@@ -2683,29 +2585,26 @@ layer {
   }
 }
 layer {
-  name: "mean15"
-  type: "Reduction"
+  name: "ave_pool8"
+  type: "Pooling"
   bottom: "conv44"
-  top: "mean15"
-  reduction_param {
-    operation: MEAN
-    axis: 3
+  top: "ave_pool8"
+  pooling_param {
+    pool: AVE
+    kernel_size: 7
+    stride: 7
   }
 }
 layer {
-  name: "mean16"
-  type: "Reduction"
-  bottom: "mean15"
-  top: "mean16"
-  reduction_param {
-    operation: MEAN
-    axis: 2
-  }
+  name: "route15"
+  type: "Concat"
+  bottom: "ave_pool8"
+  top: "route15"
 }
 layer {
   name: "fc15"
   type: "InnerProduct"
-  bottom: "mean16"
+  bottom: "route15"
   top: "fc15"
   inner_product_param {
     num_output: 240
@@ -2747,41 +2646,30 @@ layer {
   top: "relu45"
 }
 layer {
-  name: "view8"
-  type: "Reshape"
+  name: "route16"
+  type: "Concat"
   bottom: "relu45"
-  top: "view8"
-  reshape_param {
-    shape {
-      dim: 0
-      dim: 960
-      dim: 1
-      dim: 1
-    }
-  }
+  top: "route16"
 }
 layer {
-  name: "mul26"
-  type: "Eltwise"
+  name: "scale8"
+  type: "Scale"
   bottom: "conv44"
-  bottom: "view8"
-  top: "mul26"
-  eltwise_param {
-    operation: PROD
-  }
+  bottom: "route16"
+  top: "scale8"
 }
 layer {
   name: "relu46"
   type: "ReLU"
-  bottom: "mul26"
+  bottom: "scale8"
   top: "relu46"
 }
 layer {
-  name: "mul27"
+  name: "mul19"
   type: "Eltwise"
-  bottom: "mul26"
+  bottom: "scale8"
   bottom: "relu46"
-  top: "mul27"
+  top: "mul19"
   eltwise_param {
     operation: PROD
   }
@@ -2789,7 +2677,7 @@ layer {
 layer {
   name: "conv45"
   type: "Convolution"
-  bottom: "mul27"
+  bottom: "mul19"
   top: "conv45"
   convolution_param {
     num_output: 160
@@ -2877,39 +2765,36 @@ layer {
   top: "relu47"
 }
 layer {
-  name: "mul28"
+  name: "mul20"
   type: "Eltwise"
   bottom: "conv46"
   bottom: "relu47"
-  top: "mul28"
+  top: "mul20"
   eltwise_param {
     operation: PROD
   }
 }
 layer {
-  name: "mean17"
-  type: "Reduction"
-  bottom: "mul28"
-  top: "mean17"
-  reduction_param {
-    operation: MEAN
-    axis: 3
+  name: "ave_pool9"
+  type: "Pooling"
+  bottom: "mul20"
+  top: "ave_pool9"
+  pooling_param {
+    pool: AVE
+    kernel_size: 7
+    stride: 7
   }
 }
 layer {
-  name: "mean18"
-  type: "Reduction"
-  bottom: "mean17"
-  top: "mean18"
-  reduction_param {
-    operation: MEAN
-    axis: 2
-  }
+  name: "route17"
+  type: "Concat"
+  bottom: "ave_pool9"
+  top: "route17"
 }
 layer {
   name: "fc17"
   type: "InnerProduct"
-  bottom: "mean18"
+  bottom: "route17"
   top: "fc17"
   inner_product_param {
     num_output: 1280
@@ -2929,11 +2814,11 @@ layer {
   top: "relu48"
 }
 layer {
-  name: "mul29"
+  name: "mul21"
   type: "Eltwise"
   bottom: "fc17"
   bottom: "relu48"
-  top: "mul29"
+  top: "mul21"
   eltwise_param {
     operation: PROD
   }
@@ -2941,7 +2826,7 @@ layer {
 layer {
   name: "fc18"
   type: "InnerProduct"
-  bottom: "mul29"
+  bottom: "mul21"
   top: "fc18"
   inner_product_param {
     num_output: 1000
