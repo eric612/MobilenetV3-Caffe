@@ -28,7 +28,6 @@ layer {
   bottom: "conv1"
   top: "conv1"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -59,7 +58,7 @@ layer {
 }
 layer {
   name: "conv2"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "mul1"
   top: "conv2"
   convolution_param {
@@ -81,7 +80,6 @@ layer {
   bottom: "conv2"
   top: "conv2"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -124,7 +122,6 @@ layer {
   bottom: "conv3"
   top: "conv3"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -171,7 +168,6 @@ layer {
   bottom: "conv4"
   top: "conv4"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -192,7 +188,7 @@ layer {
 }
 layer {
   name: "conv5"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "relu3"
   top: "conv5"
   convolution_param {
@@ -214,7 +210,6 @@ layer {
   bottom: "conv5"
   top: "conv5"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -257,7 +252,6 @@ layer {
   bottom: "conv6"
   top: "conv6"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -294,7 +288,6 @@ layer {
   bottom: "conv7"
   top: "conv7"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -315,7 +308,7 @@ layer {
 }
 layer {
   name: "conv8"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "relu5"
   top: "conv8"
   convolution_param {
@@ -337,7 +330,6 @@ layer {
   bottom: "conv8"
   top: "conv8"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -380,7 +372,6 @@ layer {
   bottom: "conv9"
   top: "conv9"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -427,7 +418,6 @@ layer {
   bottom: "conv10"
   top: "conv10"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -448,7 +438,7 @@ layer {
 }
 layer {
   name: "conv11"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "relu7"
   top: "conv11"
   convolution_param {
@@ -470,7 +460,6 @@ layer {
   bottom: "conv11"
   top: "conv11"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -563,7 +552,7 @@ layer {
 }
 layer {
   name: "relu10"
-  type: "ReLu6"
+  type: "ReLU6"
   bottom: "power1"
   top: "relu10"
 }
@@ -584,6 +573,9 @@ layer {
   bottom: "conv11"
   bottom: "power2"
   top: "scale1"
+  scale_param {
+    axis: 0
+  }
 }
 layer {
   name: "relu11"
@@ -615,7 +607,6 @@ layer {
   bottom: "conv12"
   top: "conv12"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -652,7 +643,6 @@ layer {
   bottom: "conv13"
   top: "conv13"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -673,7 +663,7 @@ layer {
 }
 layer {
   name: "conv14"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "relu12"
   top: "conv14"
   convolution_param {
@@ -695,7 +685,6 @@ layer {
   bottom: "conv14"
   top: "conv14"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -788,7 +777,7 @@ layer {
 }
 layer {
   name: "relu15"
-  type: "ReLu6"
+  type: "ReLU6"
   bottom: "power3"
   top: "relu15"
 }
@@ -809,6 +798,9 @@ layer {
   bottom: "conv14"
   bottom: "power4"
   top: "scale2"
+  scale_param {
+    axis: 0
+  }
 }
 layer {
   name: "relu16"
@@ -840,7 +832,6 @@ layer {
   bottom: "conv15"
   top: "conv15"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -887,7 +878,6 @@ layer {
   bottom: "conv16"
   top: "conv16"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -908,7 +898,7 @@ layer {
 }
 layer {
   name: "conv17"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "relu17"
   top: "conv17"
   convolution_param {
@@ -930,7 +920,6 @@ layer {
   bottom: "conv17"
   top: "conv17"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1023,7 +1012,7 @@ layer {
 }
 layer {
   name: "relu20"
-  type: "ReLu6"
+  type: "ReLU6"
   bottom: "power5"
   top: "relu20"
 }
@@ -1044,6 +1033,9 @@ layer {
   bottom: "conv17"
   bottom: "power6"
   top: "scale3"
+  scale_param {
+    axis: 0
+  }
 }
 layer {
   name: "relu21"
@@ -1075,7 +1067,6 @@ layer {
   bottom: "conv18"
   top: "conv18"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1122,7 +1113,6 @@ layer {
   bottom: "conv19"
   top: "conv19"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1153,7 +1143,7 @@ layer {
 }
 layer {
   name: "conv20"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "mul2"
   top: "conv20"
   convolution_param {
@@ -1175,7 +1165,6 @@ layer {
   bottom: "conv20"
   top: "conv20"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1228,7 +1217,6 @@ layer {
   bottom: "conv21"
   top: "conv21"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1265,7 +1253,6 @@ layer {
   bottom: "conv22"
   top: "conv22"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1296,7 +1283,7 @@ layer {
 }
 layer {
   name: "conv23"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "mul4"
   top: "conv23"
   convolution_param {
@@ -1318,7 +1305,6 @@ layer {
   bottom: "conv23"
   top: "conv23"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1371,7 +1357,6 @@ layer {
   bottom: "conv24"
   top: "conv24"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1418,7 +1403,6 @@ layer {
   bottom: "conv25"
   top: "conv25"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1449,7 +1433,7 @@ layer {
 }
 layer {
   name: "conv26"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "mul6"
   top: "conv26"
   convolution_param {
@@ -1471,7 +1455,6 @@ layer {
   bottom: "conv26"
   top: "conv26"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1524,7 +1507,6 @@ layer {
   bottom: "conv27"
   top: "conv27"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1571,7 +1553,6 @@ layer {
   bottom: "conv28"
   top: "conv28"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1602,7 +1583,7 @@ layer {
 }
 layer {
   name: "conv29"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "mul8"
   top: "conv29"
   convolution_param {
@@ -1624,7 +1605,6 @@ layer {
   bottom: "conv29"
   top: "conv29"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1677,7 +1657,6 @@ layer {
   bottom: "conv30"
   top: "conv30"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1724,7 +1703,6 @@ layer {
   bottom: "conv31"
   top: "conv31"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1755,7 +1733,7 @@ layer {
 }
 layer {
   name: "conv32"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "mul10"
   top: "conv32"
   convolution_param {
@@ -1777,7 +1755,6 @@ layer {
   bottom: "conv32"
   top: "conv32"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1870,7 +1847,7 @@ layer {
 }
 layer {
   name: "relu33"
-  type: "ReLu6"
+  type: "ReLU6"
   bottom: "power7"
   top: "relu33"
 }
@@ -1891,6 +1868,9 @@ layer {
   bottom: "conv32"
   bottom: "power8"
   top: "scale4"
+  scale_param {
+    axis: 0
+  }
 }
 layer {
   name: "relu34"
@@ -1932,7 +1912,6 @@ layer {
   bottom: "conv33"
   top: "conv33"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -1969,7 +1948,6 @@ layer {
   bottom: "conv34"
   top: "conv34"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2000,7 +1978,7 @@ layer {
 }
 layer {
   name: "conv35"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "mul12"
   top: "conv35"
   convolution_param {
@@ -2022,7 +2000,6 @@ layer {
   bottom: "conv35"
   top: "conv35"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2115,7 +2092,7 @@ layer {
 }
 layer {
   name: "relu38"
-  type: "ReLu6"
+  type: "ReLU6"
   bottom: "power9"
   top: "relu38"
 }
@@ -2136,6 +2113,9 @@ layer {
   bottom: "conv35"
   bottom: "power10"
   top: "scale5"
+  scale_param {
+    axis: 0
+  }
 }
 layer {
   name: "relu39"
@@ -2177,7 +2157,6 @@ layer {
   bottom: "conv36"
   top: "conv36"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2224,7 +2203,6 @@ layer {
   bottom: "conv37"
   top: "conv37"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2255,7 +2233,7 @@ layer {
 }
 layer {
   name: "conv38"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "mul14"
   top: "conv38"
   convolution_param {
@@ -2277,7 +2255,6 @@ layer {
   bottom: "conv38"
   top: "conv38"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2370,7 +2347,7 @@ layer {
 }
 layer {
   name: "relu43"
-  type: "ReLu6"
+  type: "ReLU6"
   bottom: "power11"
   top: "relu43"
 }
@@ -2391,6 +2368,9 @@ layer {
   bottom: "conv38"
   bottom: "power12"
   top: "scale6"
+  scale_param {
+    axis: 0
+  }
 }
 layer {
   name: "relu44"
@@ -2432,7 +2412,6 @@ layer {
   bottom: "conv39"
   top: "conv39"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2469,7 +2448,6 @@ layer {
   bottom: "conv40"
   top: "conv40"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2500,7 +2478,7 @@ layer {
 }
 layer {
   name: "conv41"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "mul16"
   top: "conv41"
   convolution_param {
@@ -2522,7 +2500,6 @@ layer {
   bottom: "conv41"
   top: "conv41"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2615,7 +2592,7 @@ layer {
 }
 layer {
   name: "relu48"
-  type: "ReLu6"
+  type: "ReLU6"
   bottom: "power13"
   top: "relu48"
 }
@@ -2636,6 +2613,9 @@ layer {
   bottom: "conv41"
   bottom: "power14"
   top: "scale7"
+  scale_param {
+    axis: 0
+  }
 }
 layer {
   name: "relu49"
@@ -2677,7 +2657,6 @@ layer {
   bottom: "conv42"
   top: "conv42"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2714,7 +2693,6 @@ layer {
   bottom: "conv43"
   top: "conv43"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2745,7 +2723,7 @@ layer {
 }
 layer {
   name: "conv44"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "mul18"
   top: "conv44"
   convolution_param {
@@ -2767,7 +2745,6 @@ layer {
   bottom: "conv44"
   top: "conv44"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2860,7 +2837,7 @@ layer {
 }
 layer {
   name: "relu53"
-  type: "ReLu6"
+  type: "ReLU6"
   bottom: "power15"
   top: "relu53"
 }
@@ -2881,6 +2858,9 @@ layer {
   bottom: "conv44"
   bottom: "power16"
   top: "scale8"
+  scale_param {
+    axis: 0
+  }
 }
 layer {
   name: "relu54"
@@ -2922,7 +2902,6 @@ layer {
   bottom: "conv45"
   top: "conv45"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
@@ -2969,7 +2948,6 @@ layer {
   bottom: "conv46"
   top: "conv46"
   batch_norm_param {
-    use_global_stats: true
     eps: 9.999999747378752e-06
   }
 }
