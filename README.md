@@ -5,5 +5,4 @@ This project is under contruction
 
 ## To do 
 
-1. ReLu6
-2. eval. mAP
+1. eval. mAP
