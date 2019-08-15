@@ -551,10 +551,32 @@ layer {
   top: "route2"
 }
 layer {
+  name: "power1"
+  type: "Power"
+  bottom: "route2"
+  top: "power1"
+  power_param {
+    power: 1.0
+    scale: 1.0
+    shift: 3.0
+  }
+}
+layer {
+  name: "power2"
+  type: "Power"
+  bottom: "power1"
+  top: "power2"
+  power_param {
+    power: 0.0
+    scale: 0.1666666716337204
+    shift: 0.0
+  }
+}
+layer {
   name: "scale1"
   type: "Scale"
   bottom: "conv11"
-  bottom: "route2"
+  bottom: "power2"
   top: "scale1"
 }
 layer {
@@ -748,10 +770,32 @@ layer {
   top: "route4"
 }
 layer {
+  name: "power3"
+  type: "Power"
+  bottom: "route4"
+  top: "power3"
+  power_param {
+    power: 1.0
+    scale: 1.0
+    shift: 3.0
+  }
+}
+layer {
+  name: "power4"
+  type: "Power"
+  bottom: "power3"
+  top: "power4"
+  power_param {
+    power: 0.0
+    scale: 0.1666666716337204
+    shift: 0.0
+  }
+}
+layer {
   name: "scale2"
   type: "Scale"
   bottom: "conv14"
-  bottom: "route4"
+  bottom: "power4"
   top: "scale2"
 }
 layer {
@@ -955,10 +999,32 @@ layer {
   top: "route6"
 }
 layer {
+  name: "power5"
+  type: "Power"
+  bottom: "route6"
+  top: "power5"
+  power_param {
+    power: 1.0
+    scale: 1.0
+    shift: 3.0
+  }
+}
+layer {
+  name: "power6"
+  type: "Power"
+  bottom: "power5"
+  top: "power6"
+  power_param {
+    power: 0.0
+    scale: 0.1666666716337204
+    shift: 0.0
+  }
+}
+layer {
   name: "scale3"
   type: "Scale"
   bottom: "conv17"
-  bottom: "route6"
+  bottom: "power6"
   top: "scale3"
 }
 layer {
@@ -1774,10 +1840,32 @@ layer {
   top: "route8"
 }
 layer {
+  name: "power7"
+  type: "Power"
+  bottom: "route8"
+  top: "power7"
+  power_param {
+    power: 1.0
+    scale: 1.0
+    shift: 3.0
+  }
+}
+layer {
+  name: "power8"
+  type: "Power"
+  bottom: "power7"
+  top: "power8"
+  power_param {
+    power: 0.0
+    scale: 0.1666666716337204
+    shift: 0.0
+  }
+}
+layer {
   name: "scale4"
   type: "Scale"
   bottom: "conv32"
-  bottom: "route8"
+  bottom: "power8"
   top: "scale4"
 }
 layer {
@@ -1991,10 +2079,32 @@ layer {
   top: "route10"
 }
 layer {
+  name: "power9"
+  type: "Power"
+  bottom: "route10"
+  top: "power9"
+  power_param {
+    power: 1.0
+    scale: 1.0
+    shift: 3.0
+  }
+}
+layer {
+  name: "power10"
+  type: "Power"
+  bottom: "power9"
+  top: "power10"
+  power_param {
+    power: 0.0
+    scale: 0.1666666716337204
+    shift: 0.0
+  }
+}
+layer {
   name: "scale5"
   type: "Scale"
   bottom: "conv35"
-  bottom: "route10"
+  bottom: "power10"
   top: "scale5"
 }
 layer {
@@ -2218,10 +2328,32 @@ layer {
   top: "route12"
 }
 layer {
+  name: "power11"
+  type: "Power"
+  bottom: "route12"
+  top: "power11"
+  power_param {
+    power: 1.0
+    scale: 1.0
+    shift: 3.0
+  }
+}
+layer {
+  name: "power12"
+  type: "Power"
+  bottom: "power11"
+  top: "power12"
+  power_param {
+    power: 0.0
+    scale: 0.1666666716337204
+    shift: 0.0
+  }
+}
+layer {
   name: "scale6"
   type: "Scale"
   bottom: "conv38"
-  bottom: "route12"
+  bottom: "power12"
   top: "scale6"
 }
 layer {
@@ -2435,10 +2567,32 @@ layer {
   top: "route14"
 }
 layer {
+  name: "power13"
+  type: "Power"
+  bottom: "route14"
+  top: "power13"
+  power_param {
+    power: 1.0
+    scale: 1.0
+    shift: 3.0
+  }
+}
+layer {
+  name: "power14"
+  type: "Power"
+  bottom: "power13"
+  top: "power14"
+  power_param {
+    power: 0.0
+    scale: 0.1666666716337204
+    shift: 0.0
+  }
+}
+layer {
   name: "scale7"
   type: "Scale"
   bottom: "conv41"
-  bottom: "route14"
+  bottom: "power14"
   top: "scale7"
 }
 layer {
@@ -2652,10 +2806,32 @@ layer {
   top: "route16"
 }
 layer {
+  name: "power15"
+  type: "Power"
+  bottom: "route16"
+  top: "power15"
+  power_param {
+    power: 1.0
+    scale: 1.0
+    shift: 3.0
+  }
+}
+layer {
+  name: "power16"
+  type: "Power"
+  bottom: "power15"
+  top: "power16"
+  power_param {
+    power: 0.0
+    scale: 0.1666666716337204
+    shift: 0.0
+  }
+}
+layer {
   name: "scale8"
   type: "Scale"
   bottom: "conv44"
-  bottom: "route16"
+  bottom: "power16"
   top: "scale8"
 }
 layer {
