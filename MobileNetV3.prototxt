@@ -1,5 +1,5 @@
 name: "MobileNetV3"
-input: "blob1"
+input: "data"
 input_dim: 1
 input_dim: 3
 input_dim: 224
@@ -7,7 +7,7 @@ input_dim: 224
 layer {
   name: "conv1"
   type: "Convolution"
-  bottom: "blob1"
+  bottom: "data"
   top: "conv1"
   convolution_param {
     num_output: 16
