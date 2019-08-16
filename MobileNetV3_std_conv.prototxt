@@ -80,7 +80,7 @@ layer {
 }
 layer {
   name: "conv2"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "mul1"
   top: "conv2"
   convolution_param {
@@ -210,7 +210,7 @@ layer {
 }
 layer {
   name: "conv5"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "relu3"
   top: "conv5"
   convolution_param {
@@ -330,7 +330,7 @@ layer {
 }
 layer {
   name: "conv8"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "relu5"
   top: "conv8"
   convolution_param {
@@ -460,7 +460,7 @@ layer {
 }
 layer {
   name: "conv11"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "relu7"
   top: "conv11"
   convolution_param {
@@ -583,19 +583,19 @@ layer {
   top: "route2"
 }
 layer {
-  name: "mul2"
-  type: "Eltwise"
+  name: "scale1"
+  type: "Scale"
   bottom: "conv11"
   bottom: "route2"
-  top: "mul2"
-  eltwise_param {
-    operation: PROD
+  top: "scale1"
+  scale_param {
+    axis: 0
   }
 }
 layer {
   name: "relu10"
   type: "ReLU6"
-  bottom: "mul2"
+  bottom: "scale1"
   top: "relu10"
 }
 layer {
@@ -678,7 +678,7 @@ layer {
 }
 layer {
   name: "conv14"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "relu11"
   top: "conv14"
   convolution_param {
@@ -801,19 +801,19 @@ layer {
   top: "route4"
 }
 layer {
-  name: "mul3"
-  type: "Eltwise"
+  name: "scale2"
+  type: "Scale"
   bottom: "conv14"
   bottom: "route4"
-  top: "mul3"
-  eltwise_param {
-    operation: PROD
+  top: "scale2"
+  scale_param {
+    axis: 0
   }
 }
 layer {
   name: "relu14"
   type: "ReLU6"
-  bottom: "mul3"
+  bottom: "scale2"
   top: "relu14"
 }
 layer {
@@ -906,7 +906,7 @@ layer {
 }
 layer {
   name: "conv17"
-  type: "Convolution"
+  type: "DepthwiseConvolution"
   bottom: "relu15"
   top: "conv17"
   convolution_param {
@@ -1029,19 +1029,19 @@ layer {
   top: "route6"
 }
 layer {
-  name: "mul4"
-  type: "Eltwise"
+  name: "scale3"
+  type: "Scale"
   bottom: "conv17"
   bottom: "route6"
-  top: "mul4"
-  eltwise_param {
-    operation: PROD
+  top: "scale3"
+  scale_param {
+    axis: 0
   }
 }
 layer {
   name: "relu18"
   type: "ReLU6"
-  bottom: "mul4"
+  bottom: "scale3"
   top: "relu18"
 }
 layer {
@@ -1155,19 +1155,19 @@ layer {
   }
 }
 layer {
-  name: "mul5"
+  name: "mul2"
   type: "Eltwise"
   bottom: "conv19"
   bottom: "power10"
-  top: "mul5"
+  top: "mul2"
   eltwise_param {
     operation: PROD
   }
 }
 layer {
   name: "conv20"
-  type: "Convolution"
-  bottom: "mul5"
+  type: "DepthwiseConvolution"
+  bottom: "mul2"
   top: "conv20"
   convolution_param {
     num_output: 240
@@ -1229,11 +1229,11 @@ layer {
   }
 }
 layer {
-  name: "mul6"
+  name: "mul3"
   type: "Eltwise"
   bottom: "conv20"
   bottom: "power12"
-  top: "mul6"
+  top: "mul3"
   eltwise_param {
     operation: PROD
   }
@@ -1241,7 +1241,7 @@ layer {
 layer {
   name: "conv21"
   type: "Convolution"
-  bottom: "mul6"
+  bottom: "mul3"
   top: "conv21"
   convolution_param {
     num_output: 80
@@ -1339,19 +1339,19 @@ layer {
   }
 }
 layer {
-  name: "mul7"
+  name: "mul4"
   type: "Eltwise"
   bottom: "conv22"
   bottom: "power14"
-  top: "mul7"
+  top: "mul4"
   eltwise_param {
     operation: PROD
   }
 }
 layer {
   name: "conv23"
-  type: "Convolution"
-  bottom: "mul7"
+  type: "DepthwiseConvolution"
+  bottom: "mul4"
   top: "conv23"
   convolution_param {
     num_output: 200
@@ -1413,11 +1413,11 @@ layer {
   }
 }
 layer {
-  name: "mul8"
+  name: "mul5"
   type: "Eltwise"
   bottom: "conv23"
   bottom: "power16"
-  top: "mul8"
+  top: "mul5"
   eltwise_param {
     operation: PROD
   }
@@ -1425,7 +1425,7 @@ layer {
 layer {
   name: "conv24"
   type: "Convolution"
-  bottom: "mul8"
+  bottom: "mul5"
   top: "conv24"
   convolution_param {
     num_output: 80
@@ -1533,19 +1533,19 @@ layer {
   }
 }
 layer {
-  name: "mul9"
+  name: "mul6"
   type: "Eltwise"
   bottom: "conv25"
   bottom: "power18"
-  top: "mul9"
+  top: "mul6"
   eltwise_param {
     operation: PROD
   }
 }
 layer {
   name: "conv26"
-  type: "Convolution"
-  bottom: "mul9"
+  type: "DepthwiseConvolution"
+  bottom: "mul6"
   top: "conv26"
   convolution_param {
     num_output: 184
@@ -1607,11 +1607,11 @@ layer {
   }
 }
 layer {
-  name: "mul10"
+  name: "mul7"
   type: "Eltwise"
   bottom: "conv26"
   bottom: "power20"
-  top: "mul10"
+  top: "mul7"
   eltwise_param {
     operation: PROD
   }
@@ -1619,7 +1619,7 @@ layer {
 layer {
   name: "conv27"
   type: "Convolution"
-  bottom: "mul10"
+  bottom: "mul7"
   top: "conv27"
   convolution_param {
     num_output: 80
@@ -1727,19 +1727,19 @@ layer {
   }
 }
 layer {
-  name: "mul11"
+  name: "mul8"
   type: "Eltwise"
   bottom: "conv28"
   bottom: "power22"
-  top: "mul11"
+  top: "mul8"
   eltwise_param {
     operation: PROD
   }
 }
 layer {
   name: "conv29"
-  type: "Convolution"
-  bottom: "mul11"
+  type: "DepthwiseConvolution"
+  bottom: "mul8"
   top: "conv29"
   convolution_param {
     num_output: 184
@@ -1801,11 +1801,11 @@ layer {
   }
 }
 layer {
-  name: "mul12"
+  name: "mul9"
   type: "Eltwise"
   bottom: "conv29"
   bottom: "power24"
-  top: "mul12"
+  top: "mul9"
   eltwise_param {
     operation: PROD
   }
@@ -1813,7 +1813,7 @@ layer {
 layer {
   name: "conv30"
   type: "Convolution"
-  bottom: "mul12"
+  bottom: "mul9"
   top: "conv30"
   convolution_param {
     num_output: 80
@@ -1921,19 +1921,19 @@ layer {
   }
 }
 layer {
-  name: "mul13"
+  name: "mul10"
   type: "Eltwise"
   bottom: "conv31"
   bottom: "power26"
-  top: "mul13"
+  top: "mul10"
   eltwise_param {
     operation: PROD
   }
 }
 layer {
   name: "conv32"
-  type: "Convolution"
-  bottom: "mul13"
+  type: "DepthwiseConvolution"
+  bottom: "mul10"
   top: "conv32"
   convolution_param {
     num_output: 480
@@ -2055,19 +2055,19 @@ layer {
   top: "route8"
 }
 layer {
-  name: "mul14"
-  type: "Eltwise"
+  name: "scale4"
+  type: "Scale"
   bottom: "conv32"
   bottom: "route8"
-  top: "mul14"
-  eltwise_param {
-    operation: PROD
+  top: "scale4"
+  scale_param {
+    axis: 0
   }
 }
 layer {
   name: "power29"
   type: "Power"
-  bottom: "mul14"
+  bottom: "scale4"
   top: "power29"
   power_param {
     power: 1.0
@@ -2093,11 +2093,11 @@ layer {
   }
 }
 layer {
-  name: "mul15"
+  name: "mul11"
   type: "Eltwise"
-  bottom: "mul14"
+  bottom: "scale4"
   bottom: "power30"
-  top: "mul15"
+  top: "mul11"
   eltwise_param {
     operation: PROD
   }
@@ -2105,7 +2105,7 @@ layer {
 layer {
   name: "conv33"
   type: "Convolution"
-  bottom: "mul15"
+  bottom: "mul11"
   top: "conv33"
   convolution_param {
     num_output: 112
@@ -2203,19 +2203,19 @@ layer {
   }
 }
 layer {
-  name: "mul16"
+  name: "mul12"
   type: "Eltwise"
   bottom: "conv34"
   bottom: "power32"
-  top: "mul16"
+  top: "mul12"
   eltwise_param {
     operation: PROD
   }
 }
 layer {
   name: "conv35"
-  type: "Convolution"
-  bottom: "mul16"
+  type: "DepthwiseConvolution"
+  bottom: "mul12"
   top: "conv35"
   convolution_param {
     num_output: 672
@@ -2337,19 +2337,19 @@ layer {
   top: "route10"
 }
 layer {
-  name: "mul17"
-  type: "Eltwise"
+  name: "scale5"
+  type: "Scale"
   bottom: "conv35"
   bottom: "route10"
-  top: "mul17"
-  eltwise_param {
-    operation: PROD
+  top: "scale5"
+  scale_param {
+    axis: 0
   }
 }
 layer {
   name: "power35"
   type: "Power"
-  bottom: "mul17"
+  bottom: "scale5"
   top: "power35"
   power_param {
     power: 1.0
@@ -2375,11 +2375,11 @@ layer {
   }
 }
 layer {
-  name: "mul18"
+  name: "mul13"
   type: "Eltwise"
-  bottom: "mul17"
+  bottom: "scale5"
   bottom: "power36"
-  top: "mul18"
+  top: "mul13"
   eltwise_param {
     operation: PROD
   }
@@ -2387,7 +2387,7 @@ layer {
 layer {
   name: "conv36"
   type: "Convolution"
-  bottom: "mul18"
+  bottom: "mul13"
   top: "conv36"
   convolution_param {
     num_output: 112
@@ -2495,19 +2495,19 @@ layer {
   }
 }
 layer {
-  name: "mul19"
+  name: "mul14"
   type: "Eltwise"
   bottom: "conv37"
   bottom: "power38"
-  top: "mul19"
+  top: "mul14"
   eltwise_param {
     operation: PROD
   }
 }
 layer {
   name: "conv38"
-  type: "Convolution"
-  bottom: "mul19"
+  type: "DepthwiseConvolution"
+  bottom: "mul14"
   top: "conv38"
   convolution_param {
     num_output: 672
@@ -2629,19 +2629,19 @@ layer {
   top: "route12"
 }
 layer {
-  name: "mul20"
-  type: "Eltwise"
+  name: "scale6"
+  type: "Scale"
   bottom: "conv38"
   bottom: "route12"
-  top: "mul20"
-  eltwise_param {
-    operation: PROD
+  top: "scale6"
+  scale_param {
+    axis: 0
   }
 }
 layer {
   name: "power41"
   type: "Power"
-  bottom: "mul20"
+  bottom: "scale6"
   top: "power41"
   power_param {
     power: 1.0
@@ -2667,11 +2667,11 @@ layer {
   }
 }
 layer {
-  name: "mul21"
+  name: "mul15"
   type: "Eltwise"
-  bottom: "mul20"
+  bottom: "scale6"
   bottom: "power42"
-  top: "mul21"
+  top: "mul15"
   eltwise_param {
     operation: PROD
   }
@@ -2679,7 +2679,7 @@ layer {
 layer {
   name: "conv39"
   type: "Convolution"
-  bottom: "mul21"
+  bottom: "mul15"
   top: "conv39"
   convolution_param {
     num_output: 160
@@ -2777,19 +2777,19 @@ layer {
   }
 }
 layer {
-  name: "mul22"
+  name: "mul16"
   type: "Eltwise"
   bottom: "conv40"
   bottom: "power44"
-  top: "mul22"
+  top: "mul16"
   eltwise_param {
     operation: PROD
   }
 }
 layer {
   name: "conv41"
-  type: "Convolution"
-  bottom: "mul22"
+  type: "DepthwiseConvolution"
+  bottom: "mul16"
   top: "conv41"
   convolution_param {
     num_output: 672
@@ -2911,19 +2911,19 @@ layer {
   top: "route14"
 }
 layer {
-  name: "mul23"
-  type: "Eltwise"
+  name: "scale7"
+  type: "Scale"
   bottom: "conv41"
   bottom: "route14"
-  top: "mul23"
-  eltwise_param {
-    operation: PROD
+  top: "scale7"
+  scale_param {
+    axis: 0
   }
 }
 layer {
   name: "power47"
   type: "Power"
-  bottom: "mul23"
+  bottom: "scale7"
   top: "power47"
   power_param {
     power: 1.0
@@ -2949,11 +2949,11 @@ layer {
   }
 }
 layer {
-  name: "mul24"
+  name: "mul17"
   type: "Eltwise"
-  bottom: "mul23"
+  bottom: "scale7"
   bottom: "power48"
-  top: "mul24"
+  top: "mul17"
   eltwise_param {
     operation: PROD
   }
@@ -2961,7 +2961,7 @@ layer {
 layer {
   name: "conv42"
   type: "Convolution"
-  bottom: "mul24"
+  bottom: "mul17"
   top: "conv42"
   convolution_param {
     num_output: 160
@@ -3059,19 +3059,19 @@ layer {
   }
 }
 layer {
-  name: "mul25"
+  name: "mul18"
   type: "Eltwise"
   bottom: "conv43"
   bottom: "power50"
-  top: "mul25"
+  top: "mul18"
   eltwise_param {
     operation: PROD
   }
 }
 layer {
   name: "conv44"
-  type: "Convolution"
-  bottom: "mul25"
+  type: "DepthwiseConvolution"
+  bottom: "mul18"
   top: "conv44"
   convolution_param {
     num_output: 960
@@ -3193,19 +3193,19 @@ layer {
   top: "route16"
 }
 layer {
-  name: "mul26"
-  type: "Eltwise"
+  name: "scale8"
+  type: "Scale"
   bottom: "conv44"
   bottom: "route16"
-  top: "mul26"
-  eltwise_param {
-    operation: PROD
+  top: "scale8"
+  scale_param {
+    axis: 0
   }
 }
 layer {
   name: "power53"
   type: "Power"
-  bottom: "mul26"
+  bottom: "scale8"
   top: "power53"
   power_param {
     power: 1.0
@@ -3231,11 +3231,11 @@ layer {
   }
 }
 layer {
-  name: "mul27"
+  name: "mul19"
   type: "Eltwise"
-  bottom: "mul26"
+  bottom: "scale8"
   bottom: "power54"
-  top: "mul27"
+  top: "mul19"
   eltwise_param {
     operation: PROD
   }
@@ -3243,7 +3243,7 @@ layer {
 layer {
   name: "conv45"
   type: "Convolution"
-  bottom: "mul27"
+  bottom: "mul19"
   top: "conv45"
   convolution_param {
     num_output: 160
@@ -3351,11 +3351,11 @@ layer {
   }
 }
 layer {
-  name: "mul28"
+  name: "mul20"
   type: "Eltwise"
   bottom: "conv46"
   bottom: "power56"
-  top: "mul28"
+  top: "mul20"
   eltwise_param {
     operation: PROD
   }
@@ -3363,7 +3363,7 @@ layer {
 layer {
   name: "ave_pool9"
   type: "Pooling"
-  bottom: "mul28"
+  bottom: "mul20"
   top: "ave_pool9"
   pooling_param {
     pool: AVE
@@ -3421,11 +3421,11 @@ layer {
   }
 }
 layer {
-  name: "mul29"
+  name: "mul21"
   type: "Eltwise"
   bottom: "fc17"
   bottom: "power58"
-  top: "mul29"
+  top: "mul21"
   eltwise_param {
     operation: PROD
   }
@@ -3433,7 +3433,7 @@ layer {
 layer {
   name: "fc18"
   type: "InnerProduct"
-  bottom: "mul29"
+  bottom: "mul21"
   top: "fc18"
   inner_product_param {
     num_output: 1000
