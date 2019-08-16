@@ -80,7 +80,7 @@ layer {
 }
 layer {
   name: "conv2"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "mul1"
   top: "conv2"
   convolution_param {
@@ -210,7 +210,7 @@ layer {
 }
 layer {
   name: "conv5"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "relu3"
   top: "conv5"
   convolution_param {
@@ -330,7 +330,7 @@ layer {
 }
 layer {
   name: "conv8"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "relu5"
   top: "conv8"
   convolution_param {
@@ -460,7 +460,7 @@ layer {
 }
 layer {
   name: "conv11"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "relu7"
   top: "conv11"
   convolution_param {
@@ -678,7 +678,7 @@ layer {
 }
 layer {
   name: "conv14"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "relu11"
   top: "conv14"
   convolution_param {
@@ -906,7 +906,7 @@ layer {
 }
 layer {
   name: "conv17"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "relu15"
   top: "conv17"
   convolution_param {
@@ -1166,7 +1166,7 @@ layer {
 }
 layer {
   name: "conv20"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "mul2"
   top: "conv20"
   convolution_param {
@@ -1350,7 +1350,7 @@ layer {
 }
 layer {
   name: "conv23"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "mul4"
   top: "conv23"
   convolution_param {
@@ -1544,7 +1544,7 @@ layer {
 }
 layer {
   name: "conv26"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "mul6"
   top: "conv26"
   convolution_param {
@@ -1738,7 +1738,7 @@ layer {
 }
 layer {
   name: "conv29"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "mul8"
   top: "conv29"
   convolution_param {
@@ -1932,7 +1932,7 @@ layer {
 }
 layer {
   name: "conv32"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "mul10"
   top: "conv32"
   convolution_param {
@@ -2214,7 +2214,7 @@ layer {
 }
 layer {
   name: "conv35"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "mul12"
   top: "conv35"
   convolution_param {
@@ -2506,7 +2506,7 @@ layer {
 }
 layer {
   name: "conv38"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "mul14"
   top: "conv38"
   convolution_param {
@@ -2788,7 +2788,7 @@ layer {
 }
 layer {
   name: "conv41"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "mul16"
   top: "conv41"
   convolution_param {
@@ -3070,7 +3070,7 @@ layer {
 }
 layer {
   name: "conv44"
-  type: "DepthwiseConvolution"
+  type: "Convolution"
   bottom: "mul18"
   top: "conv44"
   convolution_param {
