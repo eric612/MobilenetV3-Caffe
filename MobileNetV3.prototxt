@@ -63,7 +63,7 @@ layer {
   bottom: "relu1"
   top: "power2"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -571,7 +571,7 @@ layer {
   bottom: "relu9"
   top: "power4"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -789,7 +789,7 @@ layer {
   bottom: "relu13"
   top: "power6"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -1017,7 +1017,7 @@ layer {
   bottom: "relu17"
   top: "power8"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -1149,7 +1149,7 @@ layer {
   bottom: "relu19"
   top: "power10"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -1223,7 +1223,7 @@ layer {
   bottom: "relu20"
   top: "power12"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -1333,7 +1333,7 @@ layer {
   bottom: "relu21"
   top: "power14"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -1407,7 +1407,7 @@ layer {
   bottom: "relu22"
   top: "power16"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -1527,7 +1527,7 @@ layer {
   bottom: "relu23"
   top: "power18"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -1601,7 +1601,7 @@ layer {
   bottom: "relu24"
   top: "power20"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -1721,7 +1721,7 @@ layer {
   bottom: "relu25"
   top: "power22"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -1795,7 +1795,7 @@ layer {
   bottom: "relu26"
   top: "power24"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -1915,7 +1915,7 @@ layer {
   bottom: "relu27"
   top: "power26"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -2043,7 +2043,7 @@ layer {
   bottom: "relu29"
   top: "power28"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -2087,7 +2087,7 @@ layer {
   bottom: "relu30"
   top: "power30"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -2197,7 +2197,7 @@ layer {
   bottom: "relu31"
   top: "power32"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -2325,7 +2325,7 @@ layer {
   bottom: "relu33"
   top: "power34"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -2369,7 +2369,7 @@ layer {
   bottom: "relu34"
   top: "power36"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -2489,7 +2489,7 @@ layer {
   bottom: "relu35"
   top: "power38"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -2617,7 +2617,7 @@ layer {
   bottom: "relu37"
   top: "power40"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -2661,7 +2661,7 @@ layer {
   bottom: "relu38"
   top: "power42"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -2771,7 +2771,7 @@ layer {
   bottom: "relu39"
   top: "power44"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -2899,7 +2899,7 @@ layer {
   bottom: "relu41"
   top: "power46"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -2943,7 +2943,7 @@ layer {
   bottom: "relu42"
   top: "power48"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -3053,7 +3053,7 @@ layer {
   bottom: "relu43"
   top: "power50"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -3181,7 +3181,7 @@ layer {
   bottom: "relu45"
   top: "power52"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -3225,7 +3225,7 @@ layer {
   bottom: "relu46"
   top: "power54"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -3345,7 +3345,7 @@ layer {
   bottom: "relu47"
   top: "power56"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
@@ -3415,7 +3415,7 @@ layer {
   bottom: "relu48"
   top: "power58"
   power_param {
-    power: 0.0
+    power: 1.0
     scale: 0.1666666716337204
     shift: 0.0
   }
